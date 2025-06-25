@@ -1,4 +1,4 @@
-package com.example.security.jwt;
+package com.example.erp.security;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -8,12 +8,14 @@ import io.jsonwebtoken.security.Keys;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.PostConstruct;
 import java.security.Key;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
+import org.springframework.security.core.GrantedAuthority;
+import java.util.stream.Collectors;
+
 
 @Component
 public class JwtUtil {
@@ -21,7 +23,10 @@ public class JwtUtil {
     private Key secretKey;
     private final long jwtExpirationInMs = 60 * 60 * 1000;
 
-    @PostConstruct
+    public JwtUtil() {
+        this.init();
+    }
+
     public void init() {
         secretKey = Keys.secretKeyFor(SignatureAlgorithm.HS256);
     }

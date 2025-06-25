@@ -1,8 +1,9 @@
-package com.example.demo.model;
+package com.example.erp.model;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import java.util.Set;
+import com.example.erp.model.Role;
 
 @Document(collection = "users")
 public class User {
@@ -15,7 +16,7 @@ public class User {
 
     public User() {}
 
-    public User(String username, String password, List<String> roles) {
+    public User(String username, String password, Set<Role> roles) {
         this.username = username;
         this.password = password;
         this.roles = roles;
@@ -31,6 +32,6 @@ public class User {
     public String getPassword() { return password; }
     public void setPassword(String password) { this.password = password; }
 
-    public List<String> getRoles() { return roles; }
-    public void setRoles(List<String> roles) { this.roles = roles; }
+    public Set<Role> getRoles() { return roles; }
+    public void setRoles(Set<Role> roles) { this.roles = roles; }
 }

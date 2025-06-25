@@ -1,6 +1,9 @@
-package com.example.project.service;
+package com.example.erp.service;
+
+import com.example.erp.dto.AuthRequest;
+import com.example.erp.dto.RegisterRequest;
 
 public interface AuthService {
-    String register(String username, String password);
-    String login(String username, String password);
+    String register(RegisterRequest request);
+    String login(AuthRequest request);
 }

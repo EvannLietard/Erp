@@ -1,14 +1,20 @@
-package com.example.project.service;
+package com.example.erp.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.core.userdetails.UserDetails;
+
 import org.springframework.stereotype.Service;
 
-import com.example.project.model.User;
-import com.example.project.repository.UserRepository;
-import com.example.project.security.JwtUtil;
+import com.example.erp.service.AuthService;
+import com.example.erp.model.User;
+import com.example.erp.repository.UserRepository;
+import com.example.erp.security.JwtUtil;
+import com.example.erp.dto.AuthRequest;
+import com.example.erp.dto.RegisterRequest;
+import com.example.erp.security.CustomUserDetailsService;
 
 @Service
 public class AuthServiceImpl implements AuthService {
@@ -20,13 +26,18 @@ public class AuthServiceImpl implements AuthService {
     private PasswordEncoder passwordEncoder;
 
     @Autowired
+    private CustomUserDetailsService customUserDetailsService;  
+
+    @Autowired
     private AuthenticationManager authenticationManager;
 
     @Autowired
     private JwtUtil jwtUtil;
 
     @Override
-    public String register(String username, String password) {
+    public String register(RegisterRequest request) {
+        String username = request.getUsername();
+        String password = request.getPassword();
         if (userRepository.findByUsername(username).isPresent()) {
             throw new RuntimeException("User already exists");
         }
@@ -38,12 +49,14 @@ public class AuthServiceImpl implements AuthService {
     }
 
     @Override
-    public String login(String username, String password) {
+    public String login(AuthRequest request) {
+        String username = request.getUsername();
+        String password = request.getPassword();
         authenticationManager.authenticate(
             new UsernamePasswordAuthenticationToken(username, password)
         );
-        final User user = userRepository.findByUsername(username).orElseThrow(() -> new RuntimeException("User not found"));
-        return jwtUtil.generateToken(user);
+        final UserDetails userDetails = customUserDetailsService.loadUserByUsername(username);
+        return jwtUtil.generateToken(userDetails);
     }
 }
 

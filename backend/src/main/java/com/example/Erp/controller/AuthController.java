@@ -1,9 +1,9 @@
-package com.example.controller;
+package com.example.erp.controller;
 
-import com.example.dto.AuthRequest;
-import com.example.dto.AuthResponse;
-import com.example.dto.RegisterRequest;
-import com.example.service.AuthService;
+import com.example.erp.dto.AuthRequest;
+import com.example.erp.dto.AuthResponse;
+import com.example.erp.dto.RegisterRequest;
+import com.example.erp.service.AuthService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

@@ -1,6 +1,7 @@
-package com.example.demo.repository;
+package com.example.erp.repository;   
 
-import com.example.demo.model.Role;
+
+import com.example.erp.model.Role;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import java.util.Optional;
 
