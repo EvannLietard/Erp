@@ -58,5 +58,9 @@ public class AuthServiceImpl implements AuthService {
         final UserDetails userDetails = customUserDetailsService.loadUserByUsername(username);
         return jwtUtil.generateToken(userDetails);
     }
+
+     public void setCustomUserDetailsService(CustomUserDetailsService customUserDetailsService) {
+        this.customUserDetailsService = customUserDetailsService;
+    }
 }
 
