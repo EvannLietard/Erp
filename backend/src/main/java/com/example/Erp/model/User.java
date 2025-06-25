@@ -3,7 +3,6 @@ package com.example.erp.model;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import java.util.Set;
-import com.example.erp.model.Role;
 
 @Document(collection = "users")
 public class User {
