@@ -27,6 +27,7 @@ public class AuthControllerTest {
 
     @Autowired
     private ObjectMapper objectMapper;
+
     @Autowired
     private UserRepository userRepository;
 
@@ -53,7 +54,7 @@ public class AuthControllerTest {
 
     @Test
     void testLogin() throws Exception {
-        // Crée l'utilisateur directement en base pour le test login
+        // Enregistre l'utilisateur
         RegisterRequest registerRequest = new RegisterRequest();
         registerRequest.setUsername("integrationUser");
         registerRequest.setPassword("password");
@@ -62,6 +63,9 @@ public class AuthControllerTest {
                 .content(objectMapper.writeValueAsString(registerRequest)))
                 .andExpect(status().isOk());
 
+        assertTrue(userRepository.findByUsername("integrationUser").isPresent());
+
+        // Tente de se connecter
         AuthRequest authRequest = new AuthRequest();
         authRequest.setUsername("integrationUser");
         authRequest.setPassword("password");

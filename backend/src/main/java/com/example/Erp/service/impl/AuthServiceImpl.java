@@ -15,6 +15,11 @@ import com.example.erp.security.JwtUtil;
 import com.example.erp.dto.AuthRequest;
 import com.example.erp.dto.RegisterRequest;
 import com.example.erp.security.CustomUserDetailsService;
+import com.example.erp.model.Role;
+import com.example.erp.repository.RoleRepository;
+
+import java.util.List;
+import java.util.Set;
 
 @Service
 public class AuthServiceImpl implements AuthService {
@@ -34,6 +39,9 @@ public class AuthServiceImpl implements AuthService {
     @Autowired
     private JwtUtil jwtUtil;
 
+    @Autowired
+    private RoleRepository roleRepository;
+
     @Override
     public String register(RegisterRequest request) {
         String username = request.getUsername();
@@ -44,6 +52,11 @@ public class AuthServiceImpl implements AuthService {
         User user = new User();
         user.setUsername(username);
         user.setPassword(passwordEncoder.encode(password));
+        
+        // Si tu as une entité Role et un repository
+        Role userRole = roleRepository.findByName("ROLE_USER")
+            .orElseThrow(() -> new RuntimeException("Role not found"));
+        user.setRoleIds(Set.of(userRole.getId()));
         userRepository.save(user);
         return "User registered successfully";
     }

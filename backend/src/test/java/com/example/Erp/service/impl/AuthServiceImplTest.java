@@ -10,6 +10,8 @@ import java.util.Optional;
 import com.example.erp.dto.AuthRequest;
 import com.example.erp.dto.RegisterRequest;
 import com.example.erp.model.User;
+import com.example.erp.model.Role;
+import com.example.erp.repository.RoleRepository;
 import com.example.erp.repository.UserRepository;
 import com.example.erp.security.CustomUserDetailsService;
 import com.example.erp.security.JwtUtil;
@@ -28,6 +30,9 @@ public class AuthServiceImplTest {
 
     @Mock
     private UserRepository userRepository;
+
+    @Mock
+    private RoleRepository roleRepository;
 
     @Mock
     private PasswordEncoder passwordEncoder;
@@ -56,9 +61,14 @@ public class AuthServiceImplTest {
         request.setUsername("testuser");
         request.setPassword("password");
 
+        Role mockRole = new Role("ROLE_USER", "Utilisateur standard");
+        mockRole.setId("mock-role-id");
+
         when(userRepository.findByUsername("testuser")).thenReturn(Optional.empty());
         when(passwordEncoder.encode("password")).thenReturn("encodedPassword");
         when(userRepository.save(any(User.class))).thenAnswer(i -> i.getArgument(0));
+        when(roleRepository.findByName("ROLE_USER"))
+            .thenReturn(Optional.of(mockRole));
 
         String result = authService.register(request);
         assertEquals("User registered successfully", result);
@@ -66,6 +76,7 @@ public class AuthServiceImplTest {
         verify(userRepository).findByUsername("testuser");
         verify(passwordEncoder).encode("password");
         verify(userRepository).save(any(User.class));
+        verify(roleRepository).findByName("ROLE_USER");
     }
 
     @Test
@@ -92,10 +103,10 @@ public class AuthServiceImplTest {
         request.setPassword("password");
 
         UserDetails userDetails = org.springframework.security.core.userdetails.User
-            .withUsername("testuser")
-            .password("encodedPassword")
-            .authorities(new ArrayList<>())
-            .build();
+                .withUsername("testuser")
+                .password("encodedPassword")
+                .authorities(new ArrayList<>())
+                .build();
 
         when(authenticationManager.authenticate(any(UsernamePasswordAuthenticationToken.class))).thenReturn(null);
         // Ne pas mocker userRepository.findByUsername ici
@@ -119,7 +130,7 @@ public class AuthServiceImplTest {
         when(authenticationManager.authenticate(any(UsernamePasswordAuthenticationToken.class))).thenReturn(null);
         // Simulez une exception lors du chargement de l'utilisateur inconnu
         when(customUserDetailsService.loadUserByUsername("unknownuser"))
-            .thenThrow(new RuntimeException("User not found"));
+                .thenThrow(new RuntimeException("User not found"));
 
         RuntimeException exception = assertThrows(RuntimeException.class, () -> {
             authService.login(request);
