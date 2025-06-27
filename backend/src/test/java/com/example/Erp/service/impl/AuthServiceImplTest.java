@@ -26,7 +26,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-public class AuthServiceImplTest {
+class AuthServiceImplTest {
 
     @Mock
     private UserRepository userRepository;
@@ -52,7 +52,6 @@ public class AuthServiceImplTest {
     @BeforeEach
     void setUp() {
         MockitoAnnotations.openMocks(this);
-        authService.setCustomUserDetailsService(customUserDetailsService);
     }
 
     @Test

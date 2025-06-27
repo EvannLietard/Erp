@@ -14,14 +14,14 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
 import org.springframework.security.core.GrantedAuthority;
-import java.util.stream.Collectors;
+
 
 
 @Component
 public class JwtUtil {
 
     private Key secretKey;
-    private final long jwtExpirationInMs = 60 * 60 * 1000;
+    private static final long JWT_EXPIRATION_IN_MS = 60L * 60 * 1000;
 
     public JwtUtil() {
         this.init();
@@ -36,14 +36,14 @@ public class JwtUtil {
          claims.put("roles", userDetails.getAuthorities()
                     .stream()
                     .map(GrantedAuthority::getAuthority)
-                    .collect(Collectors.toList()));
+                    .toList());
         return createToken(claims, userDetails.getUsername());
     }
 
     private String createToken(Map<String, Object> claims, String subject) {
 
         Date now = new Date();
-        Date expiryDate = new Date(now.getTime() + jwtExpirationInMs);
+        Date expiryDate = new Date(now.getTime() + JWT_EXPIRATION_IN_MS);
 
         return Jwts.builder()
                 .setClaims(claims)           
