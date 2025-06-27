@@ -25,7 +25,6 @@ import com.example.erp.repository.RoleRepository;
 import com.example.erp.repository.UserRepository;
 import com.example.erp.security.CustomUserDetailsService;
 import com.example.erp.security.JwtUtil;
-import com.example.erp.service.impl.AuthServiceImpl;
 
 class AuthServiceImplTest {
 
