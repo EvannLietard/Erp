@@ -61,13 +61,24 @@ Pour garantir la sécurité, la connexion à la base de données utilise désorm
 > **La construction Docker (`Dockerfile`) ne lance pas les tests** : elle se contente de builder et packager l’application, car la qualité du code est déjà garantie par la CI.
 
 > **Note développeur :**
-> Si vous voulez lancer les tests ou l’application en local, **vous devez préalablement insérer le rôle `ROLE_USER` dans la base MongoDB** :
+> Si vous voulez lancer les tests ou l’application en local, **vous devez avoir MongoDB installé sur votre machine** (téléchargeable ici : https://www.mongodb.com/try/download/community).
+>
+> Vérifiez l’installation avec :
+> ```powershell
+> mongosh --version
+> ```
+> ou
+> ```powershell
+> mongod --version
+> ```
+>
+> Ensuite, ouvrez un terminal MongoDB (`mongosh` ou `mongo`), puis exécutez :
 > 
 > ```js
 > use erp
 > db.roles.insertOne({ name: "ROLE_USER" })
 > ```
-> 
+>
 > Sinon, certains tests d’authentification échoueront avec l’erreur `Role not found`.
 
 ### Évolutions futures prévues
