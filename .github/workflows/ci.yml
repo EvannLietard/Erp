@@ -36,11 +36,5 @@ jobs:
         run: docker build -t erp .
         working-directory: ./backend
 
-      - name: Debug MongoDB URI in container
-        run: docker run -e MONGODB_URI=${{ secrets.MONGODB_URI }} erp sh -c 'echo $MONGODB_URI'
-
       - name: Run container with MongoDB URI secret
         run: docker run -e MONGODB_URI=${{ secrets.MONGODB_URI }} -p 8080:8080 erp
-
-      - name: Show Docker logs
-        run: docker logs $(docker ps -alq)
