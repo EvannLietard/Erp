@@ -33,3 +33,6 @@ jobs:
       - name: Build Docker image
         run: docker build -t erp .
         working-directory: ./backend
+
+      - name: Run container with MongoDB URI secret
+        run: docker run -e MONGODB_URI=${{ secrets.MONGODB_URI }} -p 8080:8080 erp
