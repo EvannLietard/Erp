@@ -57,8 +57,18 @@ Pour garantir la sécurité, la connexion à la base de données utilise désorm
 - **En CI/CD** : la variable est injectée via les secrets GitHub Actions, ce qui évite toute exposition d’identifiants sensibles dans le code ou les logs.
 
 > **Note :**  
-> Pour l’instant, seuls les administrateurs disposant de l’URI MongoDB Atlas peuvent lancer l’application avec la vraie base de données.  
-> J’envisage d’ajouter prochainement un mode de test universel (par exemple via Docker Compose ou une base MongoDB locale) afin que tout le monde puisse tester facilement le projet sans configuration complexe.
+> Les tests unitaires et d’intégration sont exécutés automatiquement par le pipeline CI/CD (GitHub Actions).  
+> **La construction Docker (`Dockerfile`) ne lance pas les tests** : elle se contente de builder et packager l’application, car la qualité du code est déjà garantie par la CI.
+
+> **Note développeur :**
+> Si vous voulez lancer les tests ou l’application en local, **vous devez préalablement insérer le rôle `ROLE_USER` dans la base MongoDB** :
+> 
+> ```js
+> use erp
+> db.roles.insertOne({ name: "ROLE_USER" })
+> ```
+> 
+> Sinon, certains tests d’authentification échoueront avec l’erreur `Role not found`.
 
 ### Évolutions futures prévues
 
