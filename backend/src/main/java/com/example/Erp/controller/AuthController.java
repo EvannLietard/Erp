@@ -28,5 +28,6 @@ public class AuthController {
     public ResponseEntity<AuthResponse> login(@RequestBody AuthRequest request) {
         String token = authService.login(request);
         return ResponseEntity.ok(new AuthResponse(token));
+        // Test pour voir si c'est le changement a bien ete effectuer
     }
 }
