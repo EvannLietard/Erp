@@ -38,6 +38,7 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .cors(withDefaults())
+                // CSRF désactivé uniquement pour /api/auth/** car ces endpoints n'utilisent pas encore le cookie JWT.
                 .csrf(csrf -> csrf
                         .ignoringRequestMatchers("/api/auth/**"))
                 .authorizeHttpRequests(auth -> auth
