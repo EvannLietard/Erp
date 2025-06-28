@@ -20,13 +20,24 @@ import java.util.List;
 
 import static org.springframework.security.config.Customizer.withDefaults;
 
+/**
+ * Configuration centrale de la sécurité Spring Security pour l'application.
+ * <p>
+ * Définit les règles d'accès, la gestion des sessions, l'intégration du filtre JWT,
+ * la configuration CORS, le provider d'authentification et l'encodage des mots de passe.
+ * </p>
+ */
 @Configuration
 public class SecurityConfig {
 
     private final CustomUserDetailsService userDetailsService;
-
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
 
+    /**
+     * Constructeur avec injection des dépendances nécessaires à la sécurité.
+     * @param userDetailsService service personnalisé pour charger les utilisateurs
+     * @param jwtAuthenticationFilter filtre d'authentification JWT
+     */
     @Autowired
     public SecurityConfig(CustomUserDetailsService userDetailsService,
             JwtAuthenticationFilter jwtAuthenticationFilter) {
@@ -34,6 +45,16 @@ public class SecurityConfig {
         this.jwtAuthenticationFilter = jwtAuthenticationFilter;
     }
 
+    /**
+     * Définit la chaîne de filtres de sécurité et les règles d'accès HTTP.
+     * - Autorise l'accès public à /api/auth/**
+     * - Protège toutes les autres routes
+     * - Désactive la session (stateless)
+     * - Ajoute le filtre JWT avant UsernamePasswordAuthenticationFilter
+     * @param http configuration HTTP
+     * @return la chaîne de filtres de sécurité
+     * @throws Exception en cas d'erreur de configuration
+     */
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
@@ -52,24 +73,41 @@ public class SecurityConfig {
         return http.build();
     }
 
+    /**
+     * Fournit le provider d'authentification basé sur le service utilisateur et l'encodeur de mot de passe.
+     * @return DaoAuthenticationProvider configuré
+     */
     @Bean
     public DaoAuthenticationProvider authenticationProvider() {
-        DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider(userDetailsService); // Fournir ici
+        DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider(userDetailsService);
         authProvider.setPasswordEncoder(passwordEncoder());
         return authProvider;
     }
 
+    /**
+     * Fournit l'encodeur de mot de passe (BCrypt).
+     * @return PasswordEncoder
+     */
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
-    // Pour injecter AuthenticationManager dans le controller de login
+    /**
+     * Fournit l'AuthenticationManager pour l'injection dans les contrôleurs.
+     * @param config configuration d'authentification
+     * @return AuthenticationManager
+     * @throws Exception en cas d'erreur
+     */
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
         return config.getAuthenticationManager();
     }
 
+    /**
+     * Configure la politique CORS pour autoriser le frontend local.
+     * @return CorsConfigurationSource
+     */
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
