@@ -1,25 +1,4 @@
-#root, .homepage-container, body, html {
-  box-sizing: border-box;
-  width: 100vw;
-  max-width: 100vw;
-  overflow-x: hidden;
-}
-
-.navbar, .footer {
-  width: 100%;
-  max-width: 100vw;
-  box-sizing: border-box;
-}
-
-#root {
-  width: 100vw;
-  min-height: 100vh;
-  margin: 0;
-  padding: 0;
-  text-align: initial;
-}
-
-/* Styles modernes pour la page d'accueil ERP */
+/* Styles HomePage */
 .homepage-container {
   font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
   background: linear-gradient(120deg, #f8fafc 0%, #e0e7ff 100%);
@@ -28,7 +7,6 @@
   padding: 0;
   margin: 0;
 }
-
 .hero-section {
   display: flex;
   flex-wrap: wrap;
@@ -40,7 +18,6 @@
   border-radius: 0 0 2rem 2rem;
   box-shadow: 0 4px 24px rgba(99,102,241,0.1);
 }
-
 .hero-content {
   flex: 1 1 350px;
   min-width: 300px;
@@ -89,7 +66,6 @@
   max-width: 100%;
   filter: drop-shadow(0 8px 32px rgba(99,102,241,0.2));
 }
-
 .features-section {
   margin: 3rem auto 0 auto;
   max-width: 1100px;
@@ -132,63 +108,6 @@
   color: #334155;
   font-size: 1rem;
 }
-
-/* Barre de navigation moderne */
-.navbar {
-  width: 100vw;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 1.2rem 2.5rem;
-  background: #fff;
-  box-shadow: 0 2px 12px rgba(99,102,241,0.07);
-  position: sticky;
-  top: 0;
-  z-index: 10;
-}
-.navbar-logo {
-  font-size: 2rem;
-  font-weight: 800;
-  color: #6366f1;
-  letter-spacing: 1px;
-}
-.navbar-logo span {
-  color: #60a5fa;
-}
-.navbar-links {
-  display: flex;
-  gap: 2.5rem;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-.navbar-links li a {
-  color: #3730a3;
-  font-weight: 500;
-  font-size: 1.1rem;
-  text-decoration: none;
-  transition: color 0.2s;
-}
-.navbar-links li a:hover {
-  color: #6366f1;
-}
-.navbar-login {
-  background: linear-gradient(90deg, #6366f1 0%, #60a5fa 100%);
-  color: #fff;
-  border: none;
-  border-radius: 2rem;
-  padding: 0.7rem 2rem;
-  font-size: 1rem;
-  font-weight: 600;
-  cursor: pointer;
-  box-shadow: 0 2px 8px rgba(99,102,241,0.12);
-  transition: background 0.2s;
-}
-.navbar-login:hover {
-  background: #3730a3;
-}
-
-/* Section clients */
 .clients-section {
   margin: 4rem auto 2rem auto;
   max-width: 900px;
@@ -218,8 +137,6 @@
   filter: none;
   opacity: 1;
 }
-
-/* Section avantages */
 .advantages-section {
   margin: 4rem auto 0 auto;
   max-width: 1100px;
@@ -256,110 +173,12 @@
   margin-bottom: 0.7rem;
   display: block;
 }
-
-/* Footer élégant */
-.footer {
-  background: #3730a3;
-  color: #fff;
-  padding: 2rem 0 1rem 0;
-  margin-top: 0;
-}
-.footer-content {
-  max-width: 1100px;
-  margin: 0 auto;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
-  gap: 1rem;
-  padding: 0 2rem;
-}
-.footer-links {
-  display: flex;
-  gap: 2rem;
-}
-.footer-link {
-  background: none;
-  border: none;
-  color: #fff;
-  font-size: 1rem;
-  cursor: pointer;
-  text-decoration: underline;
-  padding: 0;
-  margin: 0;
-  transition: color 0.2s;
-}
-.footer-link:hover {
-  color: #60a5fa;
-}
-
-/* Animation fade-in */
 .homepage-container > * {
   animation: fadeIn 1.2s ease;
 }
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(30px); }
   to { opacity: 1; transform: none; }
-}
-
-/* Sidebar verticale moderne */
-.sidebar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 100vh;
-  width: 220px;
-  background: #fff;
-  box-shadow: 2px 0 16px rgba(99,102,241,0.07);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 2rem 1rem 1rem 1rem;
-  z-index: 20;
-}
-.sidebar-logo {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  cursor: pointer;
-  margin-bottom: 2.5rem;
-}
-.sidebar-logo img {
-  width: 60px;
-  height: 60px;
-  margin-bottom: 0.5rem;
-}
-.sidebar-logo span {
-  font-size: 1.3rem;
-  font-weight: 700;
-  color: #6366f1;
-}
-.sidebar-links {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-}
-.sidebar-links li button {
-  width: 100%;
-  background: none;
-  border: none;
-  color: #3730a3;
-  font-size: 1.1rem;
-  font-weight: 500;
-  text-align: left;
-  padding: 0.7rem 1rem;
-  border-radius: 0.7rem;
-  transition: background 0.2s, color 0.2s;
-  cursor: pointer;
-}
-.sidebar-links li.active button,
-.sidebar-links li button:hover {
-  background: linear-gradient(90deg, #6366f1 0%, #60a5fa 100%);
-  color: #fff;
 }
 @media (max-width: 900px) {
   .hero-section {
@@ -378,34 +197,5 @@
     flex-direction: column;
     gap: 1.5rem;
     text-align: center;
-  }
-  .sidebar {
-    position: static;
-    width: 100vw;
-    height: auto;
-    flex-direction: row;
-    padding: 1rem 0.5rem;
-    box-shadow: none;
-    border-bottom: 1px solid #e0e7ff;
-  }
-  .sidebar-logo {
-    flex-direction: row;
-    margin-bottom: 0;
-    margin-right: 2rem;
-  }
-  .sidebar-logo img {
-    width: 40px;
-    height: 40px;
-    margin-bottom: 0;
-    margin-right: 0.7rem;
-  }
-  .sidebar-links {
-    flex-direction: row;
-    gap: 1rem;
-    width: auto;
-  }
-  .sidebar-links li button {
-    padding: 0.5rem 1rem;
-    font-size: 1rem;
   }
 }

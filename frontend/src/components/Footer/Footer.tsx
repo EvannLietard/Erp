@@ -1,7 +1,8 @@
 import React from "react";
-import logoEntrepriseRectangle from "../assets/LogoEntrepriseRectangle.png";
+import logoEntrepriseRectangle from "../../assets/LogoEntrepriseRectangle.png";
+import "./Footer.css";
 
-const Footer: React.FC = () => (
+export const Footer: React.FC = () => (
   <footer className="footer">
     <div className="footer-content">
       <div style={{display: 'flex', alignItems: 'center', gap: '1rem'}}>
@@ -16,5 +17,3 @@ const Footer: React.FC = () => (
     </div>
   </footer>
 );
-
-export default Footer;

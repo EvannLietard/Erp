@@ -1,7 +1,7 @@
 import React from "react";
-import "../App.css";
-import logoEntreprise from "../assets/LogoEntrepiseCarrée.png";
-import logoEntrepriseRectangle from "../assets/LogoEntrepriseRectangle.png";
+import "../../App.css";
+import logoEntreprise from "../../assets/LogoEntrepiseCarrée.png";
+import logoEntrepriseRectangle from "../../assets/LogoEntrepriseRectangle.png";
 
 const clientLogos = [
   logoEntreprise,

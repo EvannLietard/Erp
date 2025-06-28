@@ -1,0 +1,64 @@
+/* Barre de navigation moderne horizontale */
+.navbar {
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.2rem 2.5rem;
+  background: #fff;
+  box-shadow: 0 2px 12px rgba(99,102,241,0.07);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+.navbar-logo {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #6366f1;
+  letter-spacing: 1px;
+}
+.navbar-logo span {
+  color: #60a5fa;
+}
+.navbar-links {
+  display: flex;
+  gap: 2.5rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.navbar-links li a {
+  color: #3730a3;
+  font-weight: 500;
+  font-size: 1.1rem;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.navbar-links li a:hover {
+  color: #6366f1;
+}
+.navbar-login {
+  background: linear-gradient(90deg, #6366f1 0%, #60a5fa 100%);
+  color: #fff;
+  border: none;
+  border-radius: 2rem;
+  padding: 0.7rem 2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(99,102,241,0.12);
+  transition: background 0.2s;
+}
+.navbar-login:hover {
+  background: #3730a3;
+}
+@media (max-width: 900px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1rem 1rem;
+  }
+  .navbar-links {
+    gap: 1.2rem;
+  }
+}

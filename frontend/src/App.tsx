@@ -1,8 +1,6 @@
 import { useState } from 'react';
-import { Navbar } from './components/Navbar';
-import Footer from './components/Footer';
-import HomePage from './pages/HomePage';
-import FeaturesPage from './pages/FeaturesPage';
+import { Navbar, Footer } from './components';
+import { HomePage, FeaturesPage } from './pages';
 import './App.css';
 
 function App() {
@@ -14,14 +12,14 @@ function App() {
       {page === 'home' ? (
         <HomePage onShowAllFeatures={() => setPage('features')} />
       ) : (
-        <>
+        <main style={{ minHeight: '100vh' }}>
           <FeaturesPage />
           <div style={{ textAlign: 'center', margin: '2rem' }}>
             <button className="cta-button" onClick={() => setPage('home')}>
               Retour à l'accueil
             </button>
           </div>
-        </>
+        </main>
       )}
       <Footer />
     </>
