@@ -1,42 +1,323 @@
+#root, .homepage-container, body, html {
+  box-sizing: border-box;
+  width: 100vw;
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+.navbar, .footer {
+  width: 100%;
+  max-width: 100vw;
+  box-sizing: border-box;
+}
+
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+  width: 100vw;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  text-align: initial;
+}
+
+/* Styles modernes pour la page d'accueil ERP */
+.homepage-container {
+  font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
+  background: linear-gradient(120deg, #f8fafc 0%, #e0e7ff 100%);
+  min-height: 100vh;
+  width: 100vw;
+  padding: 0;
+  margin: 0;
+}
+
+.hero-section {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4rem 2rem 2rem 2rem;
+  background: linear-gradient(90deg, #6366f1 0%, #60a5fa 100%);
+  color: #fff;
+  border-radius: 0 0 2rem 2rem;
+  box-shadow: 0 4px 24px rgba(99,102,241,0.1);
+}
+
+.hero-content {
+  flex: 1 1 350px;
+  min-width: 300px;
+}
+.hero-content h1 {
+  font-size: 2.8rem;
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+.hero-content p {
+  font-size: 1.3rem;
+  margin-bottom: 2rem;
+}
+.cta-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.2rem;
+  font-weight: 700;
+  box-shadow: 0 4px 16px rgba(99,102,241,0.13);
+  background: linear-gradient(90deg, #6366f1 0%, #60a5fa 100%);
+  color: #fff;
+  border: none;
+  padding: 1.1rem 2.5rem;
+  border-radius: 2rem;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, transform 0.15s;
+}
+.cta-button:hover {
+  background: #fff;
+  color: #6366f1;
+  transform: scale(1.05);
+}
+.cta-icon {
+  font-size: 1.3rem;
+  margin-left: 0.3rem;
+}
+.hero-image {
+  flex: 1 1 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.hero-image img {
+  width: 260px;
+  max-width: 100%;
+  filter: drop-shadow(0 8px 32px rgba(99,102,241,0.2));
+}
+
+.features-section {
+  margin: 3rem auto 0 auto;
+  max-width: 1100px;
+  padding: 0 2rem;
+}
+.features-section h2 {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  color: #3730a3;
+  font-weight: 700;
+}
+.features-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+}
+.feature-card {
+  background: #fff;
+  border-radius: 1.2rem;
+  box-shadow: 0 2px 16px rgba(99,102,241,0.08);
+  padding: 2rem 1.5rem;
+  min-width: 260px;
+  max-width: 320px;
+  flex: 1 1 260px;
+  text-align: left;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.feature-card:hover {
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: 0 8px 32px rgba(99,102,241,0.15);
+}
+.feature-card h3 {
+  color: #6366f1;
+  margin-bottom: 0.7rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+.feature-card p {
+  color: #334155;
+  font-size: 1rem;
+}
+
+/* Barre de navigation moderne */
+.navbar {
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.2rem 2.5rem;
+  background: #fff;
+  box-shadow: 0 2px 12px rgba(99,102,241,0.07);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+.navbar-logo {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #6366f1;
+  letter-spacing: 1px;
+}
+.navbar-logo span {
+  color: #60a5fa;
+}
+.navbar-links {
+  display: flex;
+  gap: 2.5rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.navbar-links li a {
+  color: #3730a3;
+  font-weight: 500;
+  font-size: 1.1rem;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.navbar-links li a:hover {
+  color: #6366f1;
+}
+.navbar-login {
+  background: linear-gradient(90deg, #6366f1 0%, #60a5fa 100%);
+  color: #fff;
+  border: none;
+  border-radius: 2rem;
+  padding: 0.7rem 2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(99,102,241,0.12);
+  transition: background 0.2s;
+}
+.navbar-login:hover {
+  background: #3730a3;
+}
+
+/* Section clients */
+.clients-section {
+  margin: 4rem auto 2rem auto;
+  max-width: 900px;
   text-align: center;
 }
+.clients-section h2 {
+  color: #3730a3;
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+.clients-logos {
+  display: flex;
+  gap: 2.5rem;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.clients-logos img {
+  width: 90px;
+  height: 90px;
+  object-fit: contain;
+  filter: grayscale(1) brightness(0.8);
+  opacity: 0.7;
+  transition: filter 0.2s, opacity 0.2s;
+}
+.clients-logos img:hover {
+  filter: none;
+  opacity: 1;
+}
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
+/* Section avantages */
+.advantages-section {
+  margin: 4rem auto 0 auto;
+  max-width: 1100px;
+  text-align: center;
 }
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
+.advantages-section h2 {
+  color: #3730a3;
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
 }
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.advantages-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+}
+.advantage-card {
+  background: #fff;
+  border-radius: 1.2rem;
+  box-shadow: 0 2px 16px rgba(99,102,241,0.08);
+  padding: 2rem 1.5rem;
+  min-width: 220px;
+  max-width: 260px;
+  flex: 1 1 220px;
+  text-align: center;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.advantage-card:hover {
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: 0 8px 32px rgba(99,102,241,0.15);
+}
+.advantage-icon {
+  font-size: 2.5rem;
+  margin-bottom: 0.7rem;
+  display: block;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
+/* Footer élégant */
+.footer {
+  background: #3730a3;
+  color: #fff;
+  padding: 2rem 0 1rem 0;
+  margin-top: 0;
+}
+.footer-content {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding: 0 2rem;
+}
+.footer-links {
+  display: flex;
+  gap: 2rem;
+}
+.footer-link {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 1rem;
+  cursor: pointer;
+  text-decoration: underline;
+  padding: 0;
+  margin: 0;
+  transition: color 0.2s;
+}
+.footer-link:hover {
+  color: #60a5fa;
+}
+
+/* Animation fade-in */
+.homepage-container > * {
+  animation: fadeIn 1.2s ease;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: none; }
+}
+
+@media (max-width: 900px) {
+  .hero-section {
+    flex-direction: column;
+    text-align: center;
+    padding: 3rem 1rem 1.5rem 1rem;
   }
-  to {
-    transform: rotate(360deg);
+  .hero-image {
+    margin-top: 2rem;
   }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
+  .features-grid, .advantages-grid, .clients-logos {
+    flex-direction: column;
+    gap: 1.5rem;
   }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
+  .footer-content {
+    flex-direction: column;
+    gap: 1.5rem;
+    text-align: center;
+  }
 }
