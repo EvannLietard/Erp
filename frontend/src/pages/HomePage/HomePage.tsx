@@ -1,4 +1,5 @@
 import React from "react";
+import type { RefObject } from "react";
 import "../../App.css";
 import logoEntreprise from "../../assets/LogoEntrepiseCarrée.png";
 import logoEntrepriseRectangle from "../../assets/LogoEntrepriseRectangle.png";
@@ -16,7 +17,14 @@ const advantages = [
   { icon: "🤝", title: "Support", desc: "Assistance dédiée et personnalisée." },
 ];
 
-const HomePage: React.FC<{ onShowAllFeatures?: () => void }> = ({ onShowAllFeatures }) => {
+interface HomePageProps {
+  onShowAllFeatures?: () => void;
+  featuresRef?: RefObject<HTMLDivElement>;
+  advantagesRef?: RefObject<HTMLDivElement>;
+  clientsRef?: RefObject<HTMLDivElement>;
+}
+
+const HomePage: React.FC<HomePageProps> = ({ onShowAllFeatures, featuresRef, advantagesRef, clientsRef }) => {
   return (
     <div className="homepage-container">
       <header className="hero-section">
@@ -29,7 +37,7 @@ const HomePage: React.FC<{ onShowAllFeatures?: () => void }> = ({ onShowAllFeatu
           <img src={logoEntreprise} alt="Logo Entreprise" />
         </div>
       </header>
-      <section className="features-section" id="features">
+      <section className="features-section" id="features" ref={featuresRef}>
         <h2>Fonctionnalités clés</h2>
         <div className="features-grid">
           <div className="feature-card">
@@ -65,7 +73,7 @@ const HomePage: React.FC<{ onShowAllFeatures?: () => void }> = ({ onShowAllFeatu
           </div>
         )}
       </section>
-      <section className="advantages-section" id="advantages">
+      <section className="advantages-section" id="advantages" ref={advantagesRef}>
         <h2>Pourquoi choisir notre ERP ?</h2>
         <div className="advantages-grid">
           {advantages.map((adv) => (
@@ -77,7 +85,7 @@ const HomePage: React.FC<{ onShowAllFeatures?: () => void }> = ({ onShowAllFeatu
           ))}
         </div>
       </section>
-      <section className="clients-section" id="clients">
+      <section className="clients-section" id="clients" ref={clientsRef}>
         <h2>Ils nous font confiance</h2>
         <div className="clients-logos">
           {clientLogos.map((logo) => (

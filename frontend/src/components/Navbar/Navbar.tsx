@@ -2,7 +2,15 @@ import React from "react";
 import "./Navbar.css";
 import logoEntrepriseRectangle from "../../assets/LogoEntrepriseRectangle.png";
 
-export const Navbar: React.FC<{ onHomeClick?: () => void; page?: 'home' | 'features' }> = ({ onHomeClick, page }) => (
+interface NavbarProps {
+  onHomeClick?: () => void;
+  page?: 'home' | 'features';
+  onFeaturesClick?: () => void;
+  onAdvantagesClick?: () => void;
+  onClientsClick?: () => void;
+}
+
+export const Navbar: React.FC<NavbarProps> = ({ onHomeClick, page, onFeaturesClick, onAdvantagesClick, onClientsClick }) => (
   <nav className="navbar">
     <button
       className="navbar-logo"
@@ -14,9 +22,40 @@ export const Navbar: React.FC<{ onHomeClick?: () => void; page?: 'home' | 'featu
       Nova<span style={{color: '#60a5fa'}}>ERP</span>
     </button>
     <ul className="navbar-links">
-      <li><a href="#features">Fonctionnalités</a></li>
-      {page === 'home' && <li><a href="#advantages">Avantages</a></li>}
-      {page === 'home' && <li><a href="#clients">Clients</a></li>}
+      <li>
+        <a
+          className="navbar-link"
+          href="#features"
+          onClick={e => { e.preventDefault(); onFeaturesClick && onFeaturesClick(); }}
+          style={{ cursor: 'pointer' }}
+        >
+          Fonctionnalités
+        </a>
+      </li>
+      {page === 'home' && (
+        <li>
+          <a
+            className="navbar-link"
+            href="#advantages"
+            onClick={e => { e.preventDefault(); onAdvantagesClick && onAdvantagesClick(); }}
+            style={{ cursor: 'pointer' }}
+          >
+            Avantages
+          </a>
+        </li>
+      )}
+      {page === 'home' && (
+        <li>
+          <a
+            className="navbar-link"
+            href="#clients"
+            onClick={e => { e.preventDefault(); onClientsClick && onClientsClick(); }}
+            style={{ cursor: 'pointer' }}
+          >
+            Clients
+          </a>
+        </li>
+      )}
     </ul>
     <button className="navbar-login">Connexion</button>
   </nav>
