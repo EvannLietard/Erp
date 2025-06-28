@@ -60,7 +60,7 @@ class AuthServiceImplTest {
         request.setUsername("testuser");
         request.setPassword("password");
 
-        Role mockRole = new Role("ROLE_USER", "Utilisateur standard");
+        Role mockRole = new Role("ROLE_USER");
         mockRole.setId("mock-role-id");
 
         when(userRepository.findByUsername("testuser")).thenReturn(Optional.empty());
