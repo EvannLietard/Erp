@@ -19,19 +19,20 @@ const advantages = [
 
 interface HomePageProps {
   onShowAllFeatures?: () => void;
-  featuresRef?: RefObject<HTMLDivElement>;
-  advantagesRef?: RefObject<HTMLDivElement>;
-  clientsRef?: RefObject<HTMLDivElement>;
+  featuresRef?: React.RefObject<HTMLDivElement | null>;
+  advantagesRef?: React.RefObject<HTMLDivElement | null>;
+  clientsRef?: React.RefObject<HTMLDivElement | null>;
+  onStartClick?: () => void;
 }
 
-const HomePage: React.FC<HomePageProps> = ({ onShowAllFeatures, featuresRef, advantagesRef, clientsRef }) => {
+const HomePage: React.FC<HomePageProps> = ({ onShowAllFeatures, featuresRef, advantagesRef, clientsRef, onStartClick }) => {
   return (
     <div className="homepage-container">
       <header className="hero-section">
         <div className="hero-content">
           <h1>Bienvenue sur votre ERP Moderne</h1>
           <p>Gérez votre entreprise efficacement avec une interface intuitive, rapide et sécurisée.</p>
-          <button className="cta-button">Démarrer <span className="cta-icon">→</span></button>
+          <button className="cta-button" onClick={onStartClick}>Démarrer <span className="cta-icon">→</span></button>
         </div>
         <div className="hero-image">
           <img src={logoEntreprise} alt="Logo Entreprise" />

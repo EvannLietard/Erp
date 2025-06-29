@@ -1,16 +1,16 @@
 import React from "react";
 import "./Navbar.css";
-import logoEntrepriseRectangle from "../../assets/LogoEntrepriseRectangle.png";
 
 interface NavbarProps {
   onHomeClick?: () => void;
-  page?: 'home' | 'features';
+  page?: 'home' | 'features' | 'login';
   onFeaturesClick?: () => void;
   onAdvantagesClick?: () => void;
   onClientsClick?: () => void;
+  onLoginClick?: () => void;
 }
 
-export const Navbar: React.FC<NavbarProps> = ({ onHomeClick, page, onFeaturesClick, onAdvantagesClick, onClientsClick }) => (
+export const Navbar: React.FC<NavbarProps> = ({ onHomeClick, page, onFeaturesClick, onAdvantagesClick, onClientsClick, onLoginClick }) => (
   <nav className="navbar">
     <button
       className="navbar-logo"
@@ -21,42 +21,44 @@ export const Navbar: React.FC<NavbarProps> = ({ onHomeClick, page, onFeaturesCli
     >
       Nova<span style={{color: '#60a5fa'}}>ERP</span>
     </button>
-    <ul className="navbar-links">
-      <li>
-        <a
-          className="navbar-link"
-          href="#features"
-          onClick={e => { e.preventDefault(); onFeaturesClick && onFeaturesClick(); }}
-          style={{ cursor: 'pointer' }}
-        >
-          Fonctionnalités
-        </a>
-      </li>
-      {page === 'home' && (
+    {page !== 'login' && (
+      <ul className="navbar-links">
         <li>
           <a
             className="navbar-link"
-            href="#advantages"
-            onClick={e => { e.preventDefault(); onAdvantagesClick && onAdvantagesClick(); }}
+            href="#features"
+            onClick={e => { e.preventDefault(); onFeaturesClick && onFeaturesClick(); }}
             style={{ cursor: 'pointer' }}
           >
-            Avantages
+            Fonctionnalités
           </a>
         </li>
-      )}
-      {page === 'home' && (
-        <li>
-          <a
-            className="navbar-link"
-            href="#clients"
-            onClick={e => { e.preventDefault(); onClientsClick && onClientsClick(); }}
-            style={{ cursor: 'pointer' }}
-          >
-            Clients
-          </a>
-        </li>
-      )}
-    </ul>
-    <button className="navbar-login">Connexion</button>
+        {page === 'home' && (
+          <li>
+            <a
+              className="navbar-link"
+              href="#advantages"
+              onClick={e => { e.preventDefault(); onAdvantagesClick && onAdvantagesClick(); }}
+              style={{ cursor: 'pointer' }}
+            >
+              Avantages
+            </a>
+          </li>
+        )}
+        {page === 'home' && (
+          <li>
+            <a
+              className="navbar-link"
+              href="#clients"
+              onClick={e => { e.preventDefault(); onClientsClick && onClientsClick(); }}
+              style={{ cursor: 'pointer' }}
+            >
+              Clients
+            </a>
+          </li>
+        )}
+      </ul>
+    )}
+    <button className="navbar-login" onClick={onLoginClick}>Connexion</button>
   </nav>
 );
