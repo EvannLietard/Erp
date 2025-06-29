@@ -17,4 +17,6 @@ public interface RoleRepository extends MongoRepository<Role, String> {
      * @return un Optional contenant le rôle s'il existe, vide sinon
      */
     Optional<Role> findByName(String name);
+
+    boolean existsByName(String name);
 }

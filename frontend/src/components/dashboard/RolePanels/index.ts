@@ -1,0 +1,10 @@
+export { default as SuperAdminPanel } from "./SuperAdminPanel";
+export { default as CompanyAdminPanel } from "./CompanyAdminPanel";
+export { default as SiteManagerPanel } from "./SiteManagerPanel";
+export { default as HrManagerPanel } from "./HRManagerPanel";
+export { default as AccountantPanel } from "./AccountantPanel";
+export { default as PurchasingManagerPanel } from "./PurchasingManagerPanel";
+export { default as SalesManagerPanel } from "./SalesManagerPanel";
+export { default as StockManagerPanel } from "./StockManagerPanel";
+export { default as EmployeePanel } from "./EmployeePanel";
+export { default as DefaultPanel } from "./DefaultPanel";

@@ -17,5 +17,6 @@ public interface UserRepository extends MongoRepository<User, String> {
      * @return un Optional contenant l'utilisateur s'il existe, vide sinon
      */
     Optional<User> findByUsername(String username);
+    Optional<User> findByUsernameAndCompanyIdIsNull(String username);
 
 }
